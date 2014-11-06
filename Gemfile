@@ -43,6 +43,8 @@ group :development, :test do
   gem "database_cleaner"
   gem "selenium-webdriver"
   gem 'sqlite3'
+  gem 'teaspoon'
+  gem 'phantomjs'
 end
 
 # bundle exec rake doc:rails generates the API under doc/api
