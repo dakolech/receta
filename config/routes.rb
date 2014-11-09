@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  #root 'home#index'
 
-  resources :recipes, only: [:index, :show]
+  #resources :recipes, only: [:index, :show]
+
+  root :to => 'home#index'
+
+  scope "api" do
+    resources :recipes, only: [:index, :show]
+  end
+
+  match "*path" => 'home#index', via: :all
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

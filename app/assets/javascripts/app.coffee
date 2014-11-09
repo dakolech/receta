@@ -10,10 +10,7 @@ receta = angular.module('receta',[
 receta.config([ '$routeProvider', 'flashProvider', '$locationProvider'
   ($routeProvider,flashProvider, $locationProvider)->
 
-    $locationProvider.html5Mode({
-      enabled: true,
-      requireBase: false
-    })
+    $locationProvider.html5Mode(true)
 
     flashProvider.errorClassnames.push("alert-danger")
     flashProvider.warnClassnames.push("alert-warning")
@@ -27,8 +24,12 @@ receta.config([ '$routeProvider', 'flashProvider', '$locationProvider'
     ).when('/recipes/:recipeId',
       templateUrl: "show.html"
       controller: 'RecipeController'
-    )
+    ).otherwise({redirectTo:"/"})
 ])
+
+receta.config(($httpProvider) ->
+  $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
+)
 
 
 controllers = angular.module('controllers',[])
