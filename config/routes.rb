@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root :to => 'home#index'
 
   scope "api" do
-    resources :recipes, only: [:index, :show]
+    resources :recipes, only: [:index, :show, :create, :update, :destroy]
   end
 
   match "*path" => 'home#index', via: :all
